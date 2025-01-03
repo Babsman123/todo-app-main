@@ -1,0 +1,48 @@
+//PRIMARY COLOR
+$app-primary-color: hsl(220, 98%, 61%);
+$app-linear-bg: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
+
+//DARK THEME
+$bg-dark: hsl(235, 21%, 11%);
+$bg-app-dark: hsl(235, 24%, 19%);
+$color-text-dark: hsl(234, 39%, 85%);
+$color-text-dark-hover: hsl(236, 33%, 92%);
+$list-cancel-color: hsl(234, 11%, 52%);
+$dark-shadow: hsl(233, 14%, 35%);
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%; //1rem = 10px
+}
+
+body {
+  line-height: 1.6;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: min-content;
+
+  background-color: red;
+  position: relative;
+  //   min-height: 100vh;
+  border: 2x solid yellow;
+
+  //   &::after {
+  //     content: url(../images/bg-desktop-dark.jpg);
+  //     position: absolute;
+  //     top: 0;
+  //     left: 0;
+  //     height: 10vh;
+  //     // width: 100%;
+  //     z-index: 10;
+  //   }
+}

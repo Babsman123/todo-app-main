@@ -1,0 +1,11 @@
+.background-img {
+  grid-column: 1 / -1;
+  grid-row: 1 / 2;
+  border: 1px solid green;
+  height: 100%;
+}
+
+.container__main {
+  grid-column: 1 / -1;
+  grid-row: 1 / 2;
+}
