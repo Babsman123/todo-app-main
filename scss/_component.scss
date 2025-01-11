@@ -1,0 +1,96 @@
+.container {
+  .container__main {
+    margin: 0 5rem;
+    &--nav {
+      h1 {
+        margin-right: auto;
+        letter-spacing: 1rem;
+      }
+    }
+
+    &--input-task {
+      background-color: $bg-app-dark;
+      display: flex;
+      align-items: center;
+      border-radius: 0.5rem;
+
+      .create-task {
+        width: 100%;
+        padding: 1.3rem 1rem;
+        background-color: transparent;
+        border: none;
+        margin-left: 1.5rem;
+
+        &:focus {
+          outline: none;
+        }
+      }
+      .btn-task {
+        height: 20px;
+        width: 20px;
+        border: 1px solid $list-cancel-color;
+        padding: 1rem;
+        margin-left: 1.2rem;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+    }
+
+    &--todo-list {
+      background-color: $bg-app-dark;
+      margin-top: 2rem;
+      border-radius: 0.5rem;
+      min-height: 15vh;
+
+      .enter-task {
+        display: block;
+        text-align: center;
+        padding: 2rem 2rem;
+      }
+
+      li {
+        list-style-type: none;
+        padding: 1.5rem 0;
+        display: flex;
+        align-items: center;
+        border-bottom: 0.001rem solid $list-cancel-color;
+
+        p {
+          color: $color-text-dark;
+        }
+
+        .btn-list {
+          height: 20px;
+          width: 20px;
+          border: 1px solid $list-cancel-color;
+          padding: 1rem;
+          margin-left: 1.2rem;
+          border-radius: 50%;
+          cursor: pointer;
+        }
+
+        p {
+          margin-left: 1rem;
+        }
+      }
+    }
+
+    .app-details {
+      margin: 1.5rem 1.2rem;
+      color: $list-cancel-color;
+    }
+  }
+}
+
+//bg-btn-list change
+.btn-list-change {
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(hsl(192, 100%, 67%), 0.5),
+      rgba(hsl(280, 87%, 65%), 0.5)
+    ),
+    url(../images/icon-check.svg);
+  background-size: 80%;
+  background-position: center;
+  background-repeat: no-repeat;
+}

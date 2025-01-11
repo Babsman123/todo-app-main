@@ -27,64 +27,65 @@
   </head>
   <body>
     <div class="container">
-      <div class="background-img">
-        <img src="./images/bg-desktop-dark.jpg" alt="bg-desktop-dark" />
+
+        <main class="container__main">
+          <!--TODO HEADER MENU-->
+          <nav class="container__main--nav">
+            <h1>TODO</h1>
+            <div class="container__main--nav-img">
+              <img
+                src="./images/icon-moon.svg"
+                alt="dark-moon"
+                class="toggle-btn nav-dark"
+              />
+              <img
+                src="./images/icon-sun.svg"
+                alt="light-sun"
+                class="toggle-btn nav-light"
+              />
+            </div>
+          </nav>
+
+          <section class="container__main--input-task">
+            <span class="btn-task"></span>
+            <input
+              type="text"
+              placeholder="Create a new todo..."
+              class="create-task"
+            />
+          </section>
+
+          <section class="container__main--todo-list">
+            <ul class="list-container">
+
+              <span class="enter-task">Enter Your Daily Task</span>
+              <!-- <li class="list-item">
+                <span class="btn-list"></span>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Velit, quod!
+                </p>
+              </li> -->
+            </ul>
+
+            <div class="app-details">
+              <div class="task-number">
+                <p class="number">0 </p> <span class="number-item"> item left</span>
+              </div>
+
+              <div class="user-menu">
+                <div class="user-menu__details all-task">All</div>
+                <div class="user-menu__details active-task">Active</div>
+                <div class="user-menu__details completed-task">Completed</div>
+              </div>
+  
+              <div class="clear-completed-task">
+                <span>Clear Completed</span>
+              </div>
+            </div>
+          </section>
+        </main>
       </div>
-      <main class="container__main">
-        <!--TODO HEADER MENU-->
-        <nav class="container__main--nav">
-          <h1>TODO</h1>
-          <div class="container__main--nav-img">
-            <img
-              src="./images/icon-moon.svg"
-              alt="dark-moon"
-              class="nav-dark"
-            />
-            <img
-              src="./images/icon-sun.svg"
-              alt="light-sun"
-              class="nav-light"
-            />
-          </div>
-        </nav>
-
-        <section class="container__main--input-task">
-          <span class="btn-task"></span>
-          <input
-            type="text"
-            placeholder="Create a new todo..."
-            class="create-task"
-          />
-        </section>
-
-        <section class="container__main--todo-list">
-          <ul>
-            <li>
-              <span class="btn-task"></span>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit,
-                quod!
-              </p>
-            </li>
-
-            <li>
-              <span class="btn-task"></span>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit,
-                quod!
-              </p>
-            </li>
-
-            <li>
-              <span class="btn-task"></span>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit,
-                quod!
-              </p>
-            </li>
-          </ul>
-        </section>
-      </main>
     </div>
     Todo
 
@@ -99,6 +100,6 @@
       >. Coded by <a href="#">Your Name Here</a>.
     </div>
 
-    <script src="index.js"></script>
   </body>
+  <script src="index.js"></script>
 </html>

@@ -1,11 +1,49 @@
-.background-img {
-  grid-column: 1 / -1;
-  grid-row: 1 / 2;
-  border: 1px solid green;
-  height: 100%;
-}
+.container {
+  .container__main {
+    grid-column: 4 / span 6;
+    grid-row: 2 / -1;
 
-.container__main {
-  grid-column: 1 / -1;
-  grid-row: 1 / 2;
+    border: 1px solid red;
+    position: relative;
+    min-height: 50vh;
+    padding: 2rem 2rem;
+    z-index: 1000;
+
+    display: flex;
+    flex-direction: column;
+
+    &--nav {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+
+      &-img {
+        cursor: pointer;
+      }
+    }
+
+    .app-details {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      .task-number {
+        display: flex;
+
+        .number {
+          margin-right: 0.3rem;
+        }
+      }
+
+      .user-menu {
+        display: flex;
+
+        &__details {
+          &:not(:last-child) {
+            margin-right: 1rem;
+          }
+        }
+      }
+    }
+  }
 }

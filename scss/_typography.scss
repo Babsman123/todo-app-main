@@ -1,0 +1,29 @@
+.container__main {
+  &--nav {
+    h1 {
+      font-size: 3rem;
+      color: #fff;
+    }
+  }
+
+  &--todo-list {
+    .enter-task {
+      color: $list-cancel-color;
+      font-size: 1.3rem;
+      letter-spacing: 0.2rem;
+    }
+  }
+
+  .app-details {
+    font-size: 1.2rem;
+    .user-menu {
+      &__details {
+        cursor: pointer;
+        transition: 0.2s ease-in-out;
+        &:hover {
+          color: $app-primary-color;
+        }
+      }
+    }
+  }
+}
