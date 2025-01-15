@@ -57,6 +57,9 @@ body {
   z-index: 1000;
   display: flex;
   flex-direction: column; }
+  @media only screen and (max-width: 37.5em) {
+    .container .container__main {
+      grid-column: 1 / span 12; } }
   .container .container__main--nav {
     display: flex;
     align-items: center;
@@ -73,11 +76,24 @@ body {
         margin-right: 0.3rem; }
     .container .container__main .app-details .user-menu {
       display: flex; }
+      @media only screen and (max-width: 37.5em) {
+        .container .container__main .app-details .user-menu {
+          display: none; } }
       .container .container__main .app-details .user-menu__details:not(:last-child) {
         margin-right: 1rem; }
+  .container .container__main .user-menu--mobile {
+    display: none;
+    align-items: center;
+    justify-content: center; }
+    @media only screen and (max-width: 37.5em) {
+      .container .container__main .user-menu--mobile {
+        display: flex; } }
 
 .container .container__main {
   margin: 0 5rem; }
+  @media only screen and (max-width: 37.5em) {
+    .container .container__main {
+      margin: 0rem 1rem; } }
   .container .container__main--nav h1 {
     margin-right: auto;
     letter-spacing: 1rem; }
@@ -117,8 +133,20 @@ body {
       display: flex;
       align-items: center;
       border-bottom: 0.001rem solid #777a92; }
+      .container .container__main--todo-list li .list-item--task {
+        display: flex;
+        margin-right: auto;
+        align-items: center; }
       .container .container__main--todo-list li p {
         color: #cacde8; }
+      .container .container__main--todo-list li img {
+        margin-right: 2rem;
+        height: 2rem;
+        width: 2rem;
+        display: none; }
+        @media only screen and (max-width: 37.5em) {
+          .container .container__main--todo-list li img {
+            display: block; } }
       .container .container__main--todo-list li .btn-list {
         height: 20px;
         width: 20px;
@@ -132,6 +160,14 @@ body {
   .container .container__main .app-details {
     margin: 1.5rem 1.2rem;
     color: #777a92; }
+  .container .container__main .user-menu--mobile {
+    background-color: #25273c;
+    color: #777a92;
+    margin-top: 1.5rem;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem; }
+    .container .container__main .user-menu--mobile__details:not(:last-child) {
+      margin-right: 1rem; }
 
 .btn-list-change {
   background-image: linear-gradient(to right bottom, rgba(87, 221, 255, 0.5), rgba(192, 88, 243, 0.5)), url(../images/icon-check.svg);
@@ -154,4 +190,12 @@ body {
     cursor: pointer;
     transition: 0.2s ease-in-out; }
     .container__main .app-details .user-menu__details:hover {
+      color: #3a7bfd; }
+
+.container__main .user-menu--mobile {
+  font-size: 1.2rem; }
+  .container__main .user-menu--mobile__details {
+    cursor: pointer;
+    transition: 0.2s ease-in-out; }
+    .container__main .user-menu--mobile__details:hover {
       color: #3a7bfd; }

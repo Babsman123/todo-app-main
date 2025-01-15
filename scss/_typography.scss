@@ -26,4 +26,16 @@
       }
     }
   }
+
+  .user-menu--mobile {
+    font-size: 1.2rem;
+
+    &__details {
+      cursor: pointer;
+      transition: 0.2s ease-in-out;
+      &:hover {
+        color: $app-primary-color;
+      }
+    }
+  }
 }
