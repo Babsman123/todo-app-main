@@ -1,0 +1,120 @@
+.container {
+  position: relative;
+  min-height: 100vh;
+  background-color: $bg-dark;
+  transition: 1s all ease-in-out;
+
+  &::after {
+    content: "";
+    background-image: url(../images/bg-desktop-dark.jpg);
+    background-size: cover;
+    background-position: center;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 65vh);
+
+    @media only screen and (max-width: $bp-mobile) {
+      background-image: url(../images/bg-mobile-dark.jpg);
+      background-size: cover;
+      height: 35vh;
+    }
+  }
+  .nav-dark {
+    display: none;
+  }
+  .nav-light {
+    display: block;
+  }
+
+  .container__main {
+    &--input-task {
+      background-color: $bg-app-dark;
+    }
+    &--todo-list {
+      box-shadow: 0.2rem 1rem 5rem rgb(0, 0, 0);
+
+      li {
+        p {
+          color: $color-text-dark;
+          font-size: 1.5rem;
+          font-weight: 600;
+        }
+
+        .task--text--cancel {
+          position: relative;
+          color: $list-cancel-color;
+
+          &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 100%;
+            height: 1px;
+
+            background-color: $list-cancel-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+.container-2 {
+  background-color: #fff;
+
+  &::after {
+    content: "";
+    background-image: url(../images/bg-desktop-light.jpg);
+    background-size: cover;
+    background-position: center;
+
+    @media only screen and (max-width: $bp-mobile) {
+      background-image: url(../images/bg-mobile-light.jpg);
+      background-size: cover;
+      height: 35vh;
+    }
+  }
+
+  .nav-dark {
+    display: block;
+  }
+  .nav-light {
+    display: none;
+  }
+
+  .container__main {
+    &--input-task {
+      background-color: #fff;
+
+      .create-task {
+        width: 100%;
+        padding: 1.3rem 1rem;
+        background-color: transparent;
+        border: none;
+        margin-left: 1.5rem;
+        color: $bg-app-dark;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+    &--todo-list {
+      background-color: #fff;
+      box-shadow: 0.2rem 0.1rem 1rem rgb(0, 0, 0);
+      color: red;
+
+      li {
+        p {
+          color: red;
+          font-size: 1.5rem;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}

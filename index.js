@@ -28,6 +28,7 @@ const addTaskBtn = document.querySelector(".btn-task");
 const taskContainer = document.querySelector(".list-container");
 const taskNumber = document.querySelector(".number");
 const clearCompletedBtn = document.querySelector(".clear-completed");
+const dragDrop = document.querySelector(".todo--footer");
 
 //FOR deSKTOP DESIGN
 const allBtn = document.querySelector(".all-task");
@@ -42,30 +43,39 @@ const completeBtnMobile = document.querySelector(".completed-task-mobile");
 let currentID = 1;
 let tasks = [];
 
-const udateTaskCount = function () {
+const updateTaskCount = function () {
   taskNumber.textContent = tasks.length;
 };
+
+const displayTask = function (text) {
+  const html = ` <li class="list-item" draggable= "true">
+                <div class="list-item--task">
+                  <span class="btn-list">
+                    <img src="./images/icon-check.svg" alt="" class="img-check">
+                  </span>
+                  <p class="task--text">
+                    ${text}
+                  </p>
+                </div>
+
+                <img src="./images/icon-cross.svg" alt="icon-cross" class="img-cross">
+              </li>`;
+
+  taskContainer.insertAdjacentHTML("beforeend", html);
+};
+
 const updateTask = function () {
   taskContainer.textContent = "";
 
   const mapText = tasks.map((arrText) => arrText.text);
 
-  mapText.forEach((arrText, index) => {
-    const html = ` <li class="list-item">
-                <div class="list-item--task">
-                  <span class="btn-list"></span>
-                  <p>
-                    ${arrText}
-                  </p>
-                </div>
-
-                <img src="./images/icon-cross.svg" alt="icon-cross">
-              </li>`;
-
-    taskContainer.insertAdjacentHTML("beforeend", html);
+  mapText.forEach((arrText) => {
+    displayTask(arrText);
   });
 
   markTaskCompleted();
+  crossDelete();
+  dragAndDrop();
 };
 
 const renderTask = function () {
@@ -76,15 +86,18 @@ const renderTask = function () {
       text: inputTask.value.trim(),
     });
     currentID++;
+  } else if (inputTask.value.includes(" ")) {
+    console.log("this is enter space");
   }
   inputTask.value = "";
   updateTask();
-  udateTaskCount();
+  updateTaskCount();
 };
 
 const markTaskCompleted = function () {
-  const taskItems = document.querySelectorAll(".list-item");
+  const taskItems = document.querySelectorAll(".list-item--task");
   const taskCompletedBtn = [...document.querySelectorAll(".btn-list")];
+  const taskCompletedText = [...document.querySelectorAll(".task--text")];
 
   taskItems.forEach((task, index) => {
     let isClicked = false;
@@ -94,14 +107,13 @@ const markTaskCompleted = function () {
         tasks[index].status = true;
         taskNumber.textContent--;
         taskCompletedBtn[index].classList.add("btn-list-change");
+        taskCompletedText[index].classList.add("task--text--cancel");
         isClicked = true;
-        console.log(taskNumber.textContent);
       } else {
         tasks[index].status = false;
         taskNumber.textContent++;
         taskCompletedBtn[index].classList.remove("btn-list-change");
         isClicked = false;
-        console.log(taskNumber.textContent);
       }
     });
   });
@@ -113,24 +125,16 @@ const allTask = function () {
   taskContainer.textContent = "";
 
   allTheTask.forEach((arrText, index) => {
-    const html = `<li class="list-item">
-      <span class="btn-list"></span>
-      <p>
-        ${arrText}
-      </p>
-    </li>`;
-
-    taskContainer.insertAdjacentHTML("beforeend", html);
+    displayTask(arrText);
 
     if (tasks[index].status === true) {
       completedTask();
     }
   });
+
   if (tasks.length === 0) {
-    console.log("task is zeroe");
     const emptyComplete = document.createElement("p");
     emptyComplete.classList.add("enter-task");
-
     emptyComplete.textContent = "No New Task Available";
     taskContainer.appendChild(emptyComplete);
   }
@@ -152,14 +156,7 @@ const activeTask = function () {
     taskContainer.appendChild(emptyActive);
   } else {
     actTask.forEach((arrText) => {
-      const html = `<li class="list-item">
-    <span class="btn-list"></span>
-    <p>
-      ${arrText}
-    </p>
-  </li>`;
-
-      taskContainer.insertAdjacentHTML("beforeend", html);
+      displayTask(arrText);
     });
   }
   // completedTask();
@@ -172,6 +169,7 @@ const completedTask = function () {
     .map((item) => item.text);
 
   taskContainer.textContent = "";
+  console.log(tasks);
 
   if (completeTask.length === 0) {
     const emptyComplete = document.createElement("p");
@@ -181,14 +179,7 @@ const completedTask = function () {
     taskContainer.appendChild(emptyComplete);
   } else {
     completeTask.forEach((arrText, index) => {
-      const html = `<li class="list-item">
-  <span class="btn-list"></span>
-  <p>
-    ${arrText}
-  </p>
-</li>`;
-
-      taskContainer.insertAdjacentHTML("beforeend", html);
+      displayTask(arrText);
     });
 
     const taskCompletedBtn = [...document.querySelectorAll(".btn-list")];
@@ -199,20 +190,66 @@ const completedTask = function () {
 };
 
 const clearCompletedTask = function () {
-  let index = tasks.findIndex((item) => item.status);
+  let clearTasks = tasks.filter((item) => item.status === true);
 
-  tasks.splice(index, 1);
-  updateTask();
-
-  if (tasks.length === 0) {
-    const NewTask = document.createElement("p");
-    NewTask.classList.add("enter-task");
-    NewTask.textContent = `No Task Available`;
-
-    taskContainer.appendChild(NewTask);
-  } else {
+  clearTasks.forEach((clearTask) => {
+    const index = tasks.findIndex((task) => task.id === clearTask.id);
+    console.log(index);
+    tasks.splice(index, 1);
     updateTask();
-  }
+  });
+};
+
+const clearUnccompletedTask = function () {
+  let clearTasks = tasks.filter((item) => item.status === false);
+
+  clearTasks.forEach((clearTask) => {
+    const index = tasks.findIndex((task) => task.id === clearTask.id);
+    console.log(index);
+    tasks.splice(index, 1);
+    taskNumber.textContent--;
+    updateTask();
+  });
+};
+
+//CROSS DELETE FOR MOBILE
+const crossDelete = function () {
+  const singleTaskDelete = document.querySelectorAll(".img-cross");
+
+  singleTaskDelete.forEach((img, index) => {
+    img.addEventListener("click", () => {
+      console.log("cross item clicked");
+      tasks.splice(index, 1);
+      updateTask();
+      updateTaskCount();
+    });
+  });
+};
+
+//DRAG AND DROP EVENT
+const dragAndDrop = function () {
+  const lists = document.querySelectorAll(".list-item");
+
+  lists.forEach((item, index) => {
+    item.addEventListener("dragstart", (e) => {
+      let selected = e.target;
+      console.log(selected);
+
+      dragDrop.addEventListener("dragover", (e) => {
+        e.preventDefault();
+      });
+
+      dragDrop.addEventListener("drop", (e) => {
+        dragDrop.appendChild(selected);
+        selected.remove();
+        selected = null;
+
+        tasks.splice(index, 1);
+        updateTask();
+        updateTaskCount();
+      });
+    });
+  });
 };
 
 //EVENT HANDLLERS

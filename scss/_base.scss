@@ -32,47 +32,4 @@ body {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: 10vh min-content;
-
-  position: relative;
-  min-height: 100vh;
-  border: 2x solid yellow;
-  background-color: $bg-dark;
-  transition: 1s all ease-in-out;
-
-  &::after {
-    content: "";
-    background-image: url(../images/bg-desktop-dark.jpg);
-    background-size: cover;
-    background-position: center;
-
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: calc(100vh - 65vh);
-  }
-  .nav-dark {
-    display: none;
-  }
-  .nav-light {
-    display: block;
-  }
-}
-
-.container-2 {
-  background-color: #fff;
-
-  &::after {
-    content: "";
-    background-image: url(../images/bg-desktop-light.jpg);
-    background-size: cover;
-    background-position: center;
-  }
-
-  .nav-dark {
-    display: block;
-  }
-  .nav-light {
-    display: none;
-  }
 }

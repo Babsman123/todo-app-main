@@ -25,6 +25,14 @@
         }
       }
     }
+
+    .clear-completed {
+      cursor: pointer;
+      transition: 0.2s ease-in-out;
+      &:hover {
+        color: hsl(0, 100%, 50%);
+      }
+    }
   }
 
   .user-menu--mobile {
@@ -37,5 +45,9 @@
         color: $app-primary-color;
       }
     }
+  }
+  .todo--footer {
+    font-size: 1.4rem;
+    color: $list-cancel-color;
   }
 }
