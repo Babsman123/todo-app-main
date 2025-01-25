@@ -65,20 +65,28 @@ const displayTask = function (text) {
 };
 
 const updateTask = function () {
-  taskContainer.textContent = "";
+  if (tasks.length === 0) {
+    taskContainer.textContent = "";
 
-  const mapText = tasks.map((arrText) => arrText.text);
+    const emptyComplete = document.createElement("p");
+    emptyComplete.classList.add("enter-task");
+    emptyComplete.textContent = "Enter A Task";
+    taskContainer.appendChild(emptyComplete);
+  } else {
+    taskContainer.textContent = "";
+    const mapText = tasks.map((arrText) => arrText.text);
 
-  mapText.forEach((arrText) => {
-    displayTask(arrText);
-  });
+    mapText.forEach((arrText) => {
+      displayTask(arrText);
+    });
+  }
 
   markTaskCompleted();
   crossDelete();
   dragAndDrop();
 };
 
-const renderTask = function () {
+const renderTask = function (e) {
   if (inputTask.value !== "") {
     tasks.push({
       id: currentID,
@@ -86,8 +94,6 @@ const renderTask = function () {
       text: inputTask.value.trim(),
     });
     currentID++;
-  } else if (inputTask.value.includes(" ")) {
-    console.log("this is enter space");
   }
   inputTask.value = "";
   updateTask();
@@ -113,6 +119,7 @@ const markTaskCompleted = function () {
         tasks[index].status = false;
         taskNumber.textContent++;
         taskCompletedBtn[index].classList.remove("btn-list-change");
+        taskCompletedText[index].classList.remove("task--text--cancel");
         isClicked = false;
       }
     });
@@ -159,7 +166,7 @@ const activeTask = function () {
       displayTask(arrText);
     });
   }
-  // completedTask();
+
   markTaskCompleted();
 };
 
@@ -169,7 +176,6 @@ const completedTask = function () {
     .map((item) => item.text);
 
   taskContainer.textContent = "";
-  console.log(tasks);
 
   if (completeTask.length === 0) {
     const emptyComplete = document.createElement("p");
@@ -183,8 +189,12 @@ const completedTask = function () {
     });
 
     const taskCompletedBtn = [...document.querySelectorAll(".btn-list")];
+    const taskCompletedText = [...document.querySelectorAll(".task--text")];
     taskCompletedBtn.forEach((item) => {
       item.classList.add("btn-list-change");
+    });
+    taskCompletedText.forEach((item) => {
+      item.classList.add("task--text--cancel");
     });
   }
 };
@@ -198,18 +208,15 @@ const clearCompletedTask = function () {
     tasks.splice(index, 1);
     updateTask();
   });
-};
 
-const clearUnccompletedTask = function () {
-  let clearTasks = tasks.filter((item) => item.status === false);
+  if (tasks.length === 0) {
+    taskContainer.textContent = "";
+    const emptyComplete = document.createElement("p");
+    emptyComplete.classList.add("enter-task");
 
-  clearTasks.forEach((clearTask) => {
-    const index = tasks.findIndex((task) => task.id === clearTask.id);
-    console.log(index);
-    tasks.splice(index, 1);
-    taskNumber.textContent--;
-    updateTask();
-  });
+    emptyComplete.textContent = "No Available Tasks";
+    taskContainer.appendChild(emptyComplete);
+  }
 };
 
 //CROSS DELETE FOR MOBILE
@@ -218,7 +225,6 @@ const crossDelete = function () {
 
   singleTaskDelete.forEach((img, index) => {
     img.addEventListener("click", () => {
-      console.log("cross item clicked");
       tasks.splice(index, 1);
       updateTask();
       updateTaskCount();
@@ -233,7 +239,6 @@ const dragAndDrop = function () {
   lists.forEach((item, index) => {
     item.addEventListener("dragstart", (e) => {
       let selected = e.target;
-      console.log(selected);
 
       dragDrop.addEventListener("dragover", (e) => {
         e.preventDefault();

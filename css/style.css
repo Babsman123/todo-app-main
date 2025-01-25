@@ -14,7 +14,8 @@ body {
 .container {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 10vh min-content; }
+  grid-template-rows: 10vh min-content;
+  font-family: "Josefin Sans", serif; }
 
 .container .container__main {
   grid-column: 4 / span 6;
@@ -149,6 +150,7 @@ body {
   .container__main .user-menu--mobile {
     background-color: #25273c;
     color: #777a92;
+    font-weight: 700;
     margin-top: 1.5rem;
     padding: 1rem 2rem;
     border-radius: 0.5rem; }
@@ -262,9 +264,13 @@ body {
         outline: none; }
   .container-2 .container__main--todo-list {
     background-color: #fff;
-    box-shadow: 0.2rem 0.1rem 1rem black;
-    color: red; }
+    box-shadow: 0.2rem 0.1rem 1rem black; }
     .container-2 .container__main--todo-list li p {
-      color: red;
+      color: #25273c;
       font-size: 1.5rem;
       font-weight: 600; }
+  .container-2 .container__main .user-menu--mobile {
+    background-color: #fff;
+    box-shadow: 0.2rem 0.1rem 1rem black; }
+    .container-2 .container__main .user-menu--mobile__details:not(:last-child) {
+      margin-right: 1rem; }
